@@ -110,7 +110,7 @@ app.post("/gen",(req, res) => {
 
 app.get("/add", (req, res) => {
 	const myId = genId();
-	const mySlot = genSlot();
+	let mySlot = genSlot();
 	mySlot = 2;
 	genApp(myId, mySlot);
 	res.send("myId : " + myId + ", " + "mySlot : " + mySlot );
