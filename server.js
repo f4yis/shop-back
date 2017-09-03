@@ -3,7 +3,10 @@ var app = express();
 var bodyParser = require('body-parser')
 var storage = require('node-persist');
 const fs = require('fs');
+const cmd = require('node-cmd')
 storage.initSync();
+var Promise =  require('bluebird');
+const getAsync = Promise.promisify(cmd.get, { multiArgs: true, context: cmd })
 //^ ---  Importing and Inting Stuffs --- ^//
 
 // Express Depentencied
@@ -31,7 +34,7 @@ const genSlot = () => {
 
 const checkSlot = (slot) => {
 	// if ture - use else not use use
-	storage.setItemSync('engine-' + slot ,true);
+	//storage.setItemSync('engine-' + slot ,true);
 	let status = storage.getItemSync('engine-' + slot);
 	//if(status == '') status = true;
 	console.log(slot + " : " + status.toString())
@@ -59,6 +62,8 @@ const genApp = () => {
 		}
 	}, 2000);
 	const stage1 = () => {
+		// Block the slot
+		storage.setItemSync('engine-' + slot , false);
 		// Write id to file
 		let AppData = {
   			name: "shopfront",
@@ -72,8 +77,19 @@ const genApp = () => {
 		    // throws an error, you could also catch it here
 		    if (err) throw err;
 
-		    // success case, the file was saved
-		    console.log('Lyric saved!');
+		    stage2();
+		});
+	}
+
+	const stage2 = () => {
+		getAsync(`
+		        cd ../slots/engine-${mySlot}
+		        ./gradlew assembleRelease
+		`).then(data => {
+		  console.log('cmd data', data)
+		  
+		}).catch(err => {
+		  console.log('cmd err', err)
 		});
 	}
 }
