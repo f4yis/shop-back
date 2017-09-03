@@ -83,11 +83,10 @@ const genApp = () => {
 
 	const stage2 = () => {
 		getAsync(`
-		        cd ../slots/engine-${mySlot}
-		        ./gradlew assembleRelease
+		        cd ../slots/engine-${mySlot} && ./gradlew assembleRelease
 		`).then(data => {
 		  console.log('cmd data', data)
-		  
+
 		}).catch(err => {
 		  console.log('cmd err', err)
 		});
