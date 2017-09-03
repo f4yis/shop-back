@@ -34,7 +34,7 @@ const genSlot = () => {
 
 const checkSlot = (slot) => {
 	// if ture - use else not use use
-	//storage.setItemSync('engine-' + slot ,true);
+	storage.setItemSync('engine-' + slot ,true);
 	let status = storage.getItemSync('engine-' + slot);
 	//if(status == '') status = true;
 	console.log(slot + " : " + status.toString())
@@ -82,6 +82,7 @@ const genApp = () => {
 	}
 
 	const stage2 = () => {
+		console.log("Build Started");
 		getAsync(`
 		        cd ../slots/engine-${mySlot}/android && ./gradlew assembleRelease
 		`).then(data => {
