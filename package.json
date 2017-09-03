@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "node-cmd": "^3.0.0",
+    "node-persist": "^2.1.0"
   }
 }
