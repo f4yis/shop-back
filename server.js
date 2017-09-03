@@ -34,7 +34,7 @@ const genSlot = () => {
 
 const checkSlot = (slot) => {
 	// if ture - use else not use use
-	storage.setItemSync('engine-' + slot ,true);
+	//storage.setItemSync('engine-' + slot ,true);
 	let status = storage.getItemSync('engine-' + slot);
 	//if(status == '') status = true;
 	console.log(slot + " : " + status.toString())
@@ -52,9 +52,8 @@ const genId = () => {
 }
 
 
-const genApp = () => {
-	const myId = genId();
-	const mySlot = genSlot();
+const genApp = (myId, mySlot) => {
+	storage.setItemSync('engine-' + mySlot ,true);
 	var slotIntervel = setInterval(() => {
 		if(checkSlot(mySlot)) {
 			stage1();
@@ -110,8 +109,11 @@ app.post("/gen",(req, res) => {
 })
 
 app.get("/add", (req, res) => {
-	genApp();
-	res.send("asdas");
+	const myId = genId();
+	const mySlot = genSlot();
+	mySlot = 2;
+	genApp(myId, mySlot);
+	res.send("myId : " + myId + ", " + "mySlot : " + mySlot );
 })
 app.listen(process.env.PORT || 8080);
 
