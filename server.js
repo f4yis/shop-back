@@ -63,7 +63,7 @@ const genApp = () => {
 	}, 2000);
 	const stage1 = () => {
 		// Block the slot
-		storage.setItemSync('engine-' + slot , false);
+		storage.setItemSync('engine-' + mySlot , false);
 		// Write id to file
 		let AppData = {
   			name: "shopfront",
