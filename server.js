@@ -66,7 +66,7 @@ const genApp = () => {
   			appId : myId
 		}
 		
-		let fileName = `../slots/engine-${myId}/app.json`;
+		let fileName = `../slots/engine-${mySlot}/app.json`;
 		// write to a new file named 2pac.txt
 		fs.writeFile(fileName, JSON.stringify(AppData), (err) => {  
 		    // throws an error, you could also catch it here
