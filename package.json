@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.js --exec babel-node",
+    "build": "babel src -d dist",
+    "postinstall": "npm run build"
   },
   "author": "Mohamed Fayis",
   "license": "ISC",
@@ -13,7 +15,15 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "mongoose": "^4.11.10",
     "node-cmd": "^3.0.0",
     "node-persist": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.12.0"
   }
 }
