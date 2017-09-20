@@ -6,5 +6,5 @@ var app = express();
 require('./api').route(app);
 
 app.listen(process.env.PORT || 8080, function () {
-	console.log("this is a test");
+	console.log("this is a testes");
 });
